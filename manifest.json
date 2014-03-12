@@ -1,0 +1,17 @@
+{
+  "name": "minAccounting",
+  "description": "Minimal accounting application.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "permissions": [{
+    "fileSystem": ["write", "retainEntries", "directory"]
+  }]
+}
