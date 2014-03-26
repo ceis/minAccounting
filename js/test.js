@@ -14,15 +14,24 @@ function saveFile(file) {
 });
 }
 
-var minAccounting = angular.module('minAccounting', []);
- 
-minAccounting.controller('MinAccountingCtrl',  ['$scope', function ($scope) {
-	$scope.openFileForSave = function() {
-		console.log("bla");
-		chrome.fileSystem.chooseEntry({
-			type: "openWritableFile"
-			// type: "saveFile"
-		}, saveFile);
-	};
+// chrome.fileSystem.chooseEntry({
+// 	type: "openWritableFile"
+// 	// type: "saveFile"
+// }, saveFile);
 
+angular.module('accountService', []).factory('accountService', [function() {
+    return {
+    	alert: function(msg) {
+    		alert("accountService: " + msg);
+    	}
+    };
 }]);
+
+angular.module('minAccounting', ['accountService']).controller('MinAccountingCtrl',  
+	['$scope', 'accountService', 
+	function ($scope, accountService) {
+		$scope.showAlert = function() {
+			accountService.alert("bla");
+		};
+	}
+]);
