@@ -1,0 +1,27 @@
+{
+  "name": "min_accounting",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ceis/minAccounting",
+  "authors": [
+    "ceis <github@schollum.com>"
+  ],
+  "description": "Minimalist accounting tool",
+  "main": "index.html",
+  "keywords": [
+    "accounting"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.2.2",
+    "polymer-elements": "Polymer/polymer-elements#~0.2.2",
+    "polymer-ui-elements": "Polymer/polymer-ui-elements#~0.2.2"
+  }
+}

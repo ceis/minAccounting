@@ -1,0 +1,32 @@
+{
+	"accounts": [
+	{
+		"id": "k",
+		"name": "Kassa",
+		"type": "assets"
+	}, {
+		"id": "vb",
+		"name": "Volksbank",
+		"type": "assets"
+	}, {
+		"id": "vbp",
+		"name": "Volksbank (privat)",
+		"type": "assets"
+	}, {
+		"id": "kb",
+		"name": "Kinesiologische Behandlung",
+		"type": "income",
+		"tax": 20
+	}],
+	"transactions": [{
+		"date": 20140102,
+		"amount": 8000,
+		"from": "kb",
+		"to": "k"
+	}, {
+		"date": 20140103,
+		"amount": 5000,
+		"from": "kb",
+		"to": "k"
+	}]
+}
