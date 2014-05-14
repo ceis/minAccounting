@@ -1,1 +1,2 @@
-"C:\Users\Alex & Christian\AppData\Local\Google\Chrome\Application\chrome.exe" --load-and-launch-app="C:\Users\Alex & Christian\Documents\GitHub\minAccounting"
+rem "C:\Users\Alex & Christian\AppData\Local\Google\Chrome\Application\chrome.exe" --load-and-launch-app="C:\Users\Alex & Christian\Documents\GitHub\minAccounting"
+"C:\Users\Alex & Christian\AppData\Local\Google\Chrome\Application\chrome.exe"  --profile-directory="Profile-dev" --disable-web-security --allow-file-access-from-files --unlimited-quota-for-files "C:\Users\Alex & Christian\Documents\GitHub\minAccounting\polymer\index.html"
