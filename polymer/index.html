@@ -4,23 +4,30 @@ account-types: assets, liabilities, income, expenses
 -->
 <html>
 <head>
-  <script src="bower_components/platform/platform.js"></script>
-  <link rel="import" href="bower_components/polymer/polymer-body.html">
-  <link rel="import" href="bower_components/polymer-localstorage/polymer-localstorage.html">
+    <script src="bower_components/platform/platform.js"></script>
+    <link rel="import" href="min-accounting/min-accounting.html">
+    <style>
+        html, body, .app {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+    </style>
 </head>
-<body is="polymer-body" unresolved>
-  <script>
-    window.model = {
-      data: null
-    }; 
-  </script>
-  <polymer-localstorage id="dataStore" name="foobar" value="{{data}}"></polymer-localstorage>
-  <script>
-      window.addEventListener('polymer-ready', function(e) {
-        var dataStore = window.dataStore = document.getElementById("dataStore");
-        dataStore.load();
-      });
+<body>
+    <min-accounting class="app" />
+<!--<script>-->
+<!--window.model = {-->
+<!--data: null-->
+<!--}; -->
+<!--</script>-->
+<!--<polymer-localstorage id="dataStore" name="foobar" value="{{data}}"></polymer-localstorage>-->
+<!--<script>-->
+<!--window.addEventListener('polymer-ready', function(e) {-->
+<!--var dataStore = window.dataStore = document.getElementById("dataStore");-->
+<!--dataStore.load();-->
+<!--});-->
 
-    </script>
-  </body>
-  </html>
+<!--</script>-->
+</body>
+</html>

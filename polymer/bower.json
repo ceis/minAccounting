@@ -20,8 +20,8 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~0.2.2",
-    "polymer-elements": "Polymer/polymer-elements#~0.2.2",
-    "polymer-ui-elements": "Polymer/polymer-ui-elements#~0.2.2"
+    "polymer": "Polymer/polymer-elements#~0.2.4",
+    "polymer-elements": "Polymer/polymer-elements#~0.2.4",
+    "polymer-ui-elements": "Polymer/polymer-ui-elements#~0.2.4"
   }
 }

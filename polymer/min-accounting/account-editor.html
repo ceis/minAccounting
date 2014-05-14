@@ -1,0 +1,22 @@
+<link rel="import" href="bower_components/polymer-ui-tabs/polymer-ui-tabs.html">
+<polymer-element name="min-accounting">
+    <template>
+        <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage>
+        <min-accounting-model id="model"></min-accounting-model>
+
+        <button on-click="{{printData}}">Print data</button>
+
+        <polymer-ui-tabs selected="0">
+            <span>One</span>
+            <span>Two</span>
+            <span>Three</span>
+            <span>Four</span>
+        </polymer-ui-tabs>
+        <table>
+        <template repeat="{{a in model.accounts}}">
+            <tr><td>{{a.name}}</td><td>{{a.type}}</td><td>{{a.tax}}</td></tr>
+        </template>
+        </table>
+    </template>
+    <script src="min-accounting.js"></script>
+</polymer-element>

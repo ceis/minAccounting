@@ -1,0 +1,39 @@
+
+<link rel="import" href="../bower_components/polymer-localstorage/polymer-localstorage.html">
+<link rel="import" href="../bower_components/polymer-flex-layout/polymer-flex-layout.html">
+<link rel="import" href="../bower_components/polymer-layout/polymer-layout.html">
+<link rel="import" href="model.html">
+
+<polymer-element name="min-accounting">
+    <template>
+        <style>
+            .accounts {
+                width: 300px;
+                /*height: 100%;*/
+                background-color: #fffec5;
+            }
+            .header {
+                background-color: green;
+            }
+            .content {
+                background-color: yellow;
+            }
+        </style>
+        <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage>
+        <min-accounting-model id="model"></min-accounting-model>
+
+
+        <!--<button on-click="{{printData}}">Print data</button>-->
+
+        <polymer-flex-layout></polymer-flex-layout>
+        <div flex>Transactions</div>
+        <div class="accounts">
+            <table>
+                <template repeat="{{a in model.accounts}}">
+                    <tr><td>{{a.name}}</td><td>{{a.type}}</td><td>{{a.tax}}</td></tr>
+                </template>
+            </table>
+        </div>
+    </template>
+    <script src="min-accounting.js"></script>
+</polymer-element>
