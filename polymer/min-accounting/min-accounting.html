@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/polymer-localstorage/polymer-localstorage.html">
 <link rel="import" href="../bower_components/polymer-flex-layout/polymer-flex-layout.html">
 <link rel="import" href="../bower_components/polymer-layout/polymer-layout.html">
+<link rel="import" href="../bower_components/polymer-file/polymer-file.html">
 <link rel="import" href="model.html">
 
 <polymer-element name="min-accounting">
@@ -21,16 +22,20 @@
         </style>
         <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage>
         <min-accounting-model id="model"></min-accounting-model>
-
+        <polymer-file id="file" readas="string" on-polymer-result="{{handleFileData}}"></polymer-file>
 
         <!--<button on-click="{{printData}}">Print data</button>-->
 
         <polymer-flex-layout></polymer-flex-layout>
         <div flex>Transactions</div>
         <div class="accounts">
-            <table>
-                <template repeat="{{a in model.accounts}}">
-                    <tr><td>{{a.name}}</td><td>{{a.type}}</td><td>{{a.tax}}</td></tr>
+                <template repeat="{{accountType in model.accountTypes}}">
+                    <h1>{{accountType}}</h1>
+                    <ul>
+                    <template repeat="{{account in model.accounts[accountType]}}">
+                        <li>{{account}}</li>
+                    </template>
+                    </ul>
                 </template>
             </table>
         </div>

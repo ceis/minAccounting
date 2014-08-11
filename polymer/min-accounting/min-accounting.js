@@ -17,12 +17,15 @@ Polymer('min-accounting', {
         window.model = this.model = this.$.model;
         this.init();
         window.acc = this;
+        this.$.file.read();
     },
 
     init: function(commands) {
-        this.commands.forEach(function(command) {
-            this.executeCommand(command);
-        }, this);
+        if (this.commands) {
+            this.commands.forEach(function(command) {
+                this.executeCommand(command);
+            }, this);
+        }
         this.initialized = true;
     },
 
@@ -47,5 +50,9 @@ Polymer('min-accounting', {
 
     modelChanged: function(newModel) {
         console.log("new model", newModel);
+    },
+
+    handleFileData: function(data) {
+        console.log("file: " + data);
     }
 });
