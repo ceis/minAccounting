@@ -54,5 +54,14 @@ Polymer('min-accounting', {
 
     handleFileData: function(data) {
         console.log("file: " + data);
+    },
+
+    openFile: function() {
+        console.log("open file");
+        chrome.fileSystem.chooseEntry({
+
+        }, function(entry) {
+            console.log("entry", entry);
+        });
     }
 });

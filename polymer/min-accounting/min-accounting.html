@@ -27,7 +27,10 @@
         <!--<button on-click="{{printData}}">Print data</button>-->
 
         <polymer-flex-layout></polymer-flex-layout>
-        <div flex>Transactions</div>
+        <div flex>
+            Transactions
+            <button on-click="{{openFile}}">Open File</button>
+        </div>
         <div class="accounts">
                 <template repeat="{{accountType in model.accountTypes}}">
                     <h1>{{accountType}}</h1>
