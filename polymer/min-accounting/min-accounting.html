@@ -1,21 +1,30 @@
-
 <link rel="import" href="../bower_components/polymer-localstorage/polymer-localstorage.html">
 <link rel="import" href="../bower_components/polymer-flex-layout/polymer-flex-layout.html">
 <link rel="import" href="../bower_components/polymer-layout/polymer-layout.html">
 <link rel="import" href="../bower_components/polymer-file/polymer-file.html">
+<link rel="import" href="../bower_components/core-menu/core-menu.html">
+<link rel="import" href="../bower_components/core-menu/core-submenu.html">
+<link rel="import" href="../bower_components/core-item/core-item.html">
+<link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="model.html">
 
 <polymer-element name="min-accounting">
     <template>
         <style>
             .accounts {
-                width: 300px;
+                /*width: 300px;*/
                 /*height: 100%;*/
                 background-color: #fffec5;
             }
+
+            #drawer {
+                background-color: #eee;
+            }
+
             .header {
                 background-color: green;
             }
+
             .content {
                 background-color: yellow;
             }
@@ -26,22 +35,22 @@
 
         <!--<button on-click="{{printData}}">Print data</button>-->
 
-        <polymer-flex-layout></polymer-flex-layout>
-        <div flex>
-            Transactions
-            <button on-click="{{openFile}}">Open File</button>
-        </div>
-        <div class="accounts">
-                <template repeat="{{accountType in model.accountTypes}}">
-                    <h1>{{accountType}}</h1>
-                    <ul>
-                    <template repeat="{{account in model.accounts[accountType]}}">
-                        <li>{{account}}</li>
+        <core-drawer-panel>
+            <div drawer id="drawer">
+                <core-menu selected="0" selectedItem="{{selectedAccount}}">
+                    <template repeat="{{accountType in model.accountTypes}}">
+                        <core-submenu label="{{accountType}}">
+                            <template repeat="{{account in model.accounts[accountType]}}">
+                                <core-item label="{{account}}"></core-item>
+                            </template>
+                        </core-submenu>
                     </template>
-                    </ul>
-                </template>
-            </table>
-        </div>
+                </core-menu>
+            </div>
+            <div main>
+                {{selectedAccount.label}}
+            </div>
+        </core-drawer-panel>
     </template>
     <script src="min-accounting.js"></script>
 </polymer-element>
