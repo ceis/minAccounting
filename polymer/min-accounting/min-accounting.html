@@ -1,56 +1,77 @@
-<link rel="import" href="../bower_components/polymer-localstorage/polymer-localstorage.html">
-<link rel="import" href="../bower_components/polymer-flex-layout/polymer-flex-layout.html">
-<link rel="import" href="../bower_components/polymer-layout/polymer-layout.html">
-<link rel="import" href="../bower_components/polymer-file/polymer-file.html">
+
+<link rel="import" href="../bower_components/core-scaffold/core-scaffold.html">
+<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../bower_components/core-menu/core-menu.html">
 <link rel="import" href="../bower_components/core-menu/core-submenu.html">
 <link rel="import" href="../bower_components/core-item/core-item.html">
-<link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
+
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+
 <link rel="import" href="model.html">
 
 <polymer-element name="min-accounting">
     <template>
         <style>
             .accounts {
-                /*width: 300px;*/
+                width: 300px;
                 /*height: 100%;*/
                 background-color: #fffec5;
             }
-
-            #drawer {
-                background-color: #eee;
-            }
-
             .header {
                 background-color: green;
             }
-
             .content {
                 background-color: yellow;
             }
+            .menuItem {
+
+            }
         </style>
-        <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage>
+        <!-- <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage> -->
         <min-accounting-model id="model"></min-accounting-model>
-        <polymer-file id="file" readas="string" on-polymer-result="{{handleFileData}}"></polymer-file>
 
         <!--<button on-click="{{printData}}">Print data</button>-->
 
-        <core-drawer-panel>
-            <div drawer id="drawer">
-                <core-menu selected="0" selectedItem="{{selectedAccount}}">
-                    <template repeat="{{accountType in model.accountTypes}}">
-                        <core-submenu label="{{accountType}}">
-                            <template repeat="{{account in model.accounts[accountType]}}">
-                                <core-item label="{{account}}"></core-item>
-                            </template>
-                        </core-submenu>
-                    </template>
-                </core-menu>
-            </div>
-            <div main>
-                {{selectedAccount.label}}
-            </div>
-        </core-drawer-panel>
-    </template>
+        <core-scaffold>
+          <core-header-panel navigation flex mode="seamed">
+            <core-toolbar>Application</core-toolbar>
+            <core-menu theme="core-light-theme" selected="{{model.selectedAccountCategoryIndex}}">
+                <template repeat="{{accountType in model.accountTypes}}">
+                <core-submenu label="{{accountType}}" selected="{{model.selectedAccountIndex}}">
+                <template repeat="{{account in model.accounts[accountType]}}">
+                  <core-item class="menuItem" label="{{account}}" on-click="{{menuItemClick}}">
+                  </core-item>
+                </template>
+                </core-submenu>
+                </template>
+            </core-menu> 
+             </core-header-panel>
+          <div tool>{{model.selectedAccountCategory}} - {{model.selectedAccount}}</div>
+          <div>Main content goes here...</div>
+        </core-scaffold>
+
+<!--         <polymer-flex-layout></polymer-flex-layout>
+        <div flex>
+            <h1>Transactions</h1>
+            <paper-tabs selected="{{model.selectedAccount}}">
+              <paper-tab>TAB 1</paper-tab>
+              <paper-tab>TAB 2</paper-tab>
+              <paper-tab>TAB 3</paper-tab>
+            </paper-tabs>
+        </div>
+        <div class="accounts">
+            <core-menu selected="0">
+                <template repeat="{{accountType in model.accountTypes}}">
+                <core-submenu label="{{accountType}}">
+                <template repeat="{{account in model.accounts[accountType]}}">
+                  <core-item class="menuItem" label="{{account}}" on-click="{{menuItemClick}}">
+                  </core-item>
+                </template>
+                </core-submenu>
+                </template>
+            </core-menu>
+        </div>
+ -->    </template>
     <script src="min-accounting.js"></script>
 </polymer-element>

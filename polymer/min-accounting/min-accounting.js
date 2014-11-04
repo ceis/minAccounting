@@ -8,6 +8,7 @@ Polymer('min-accounting', {
     dataStore: null,
     model: null,
     commands: null,
+    selectedAccount: 0,
 
     initialized: false,
 
@@ -17,7 +18,6 @@ Polymer('min-accounting', {
         window.model = this.model = this.$.model;
         this.init();
         window.acc = this;
-        this.$.file.read();
     },
 
     init: function(commands) {
@@ -46,6 +46,10 @@ Polymer('min-accounting', {
 
     printData: function() {
         console.log("data: ", this.dataStore.value);
+    },
+
+    menuItemClick: function(evt) {
+        console.log("click", evt);
     },
 
     modelChanged: function(newModel) {

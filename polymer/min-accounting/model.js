@@ -12,6 +12,9 @@ Polymer('min-accounting-model', {
      */
      accounts: null,
 
+     selectedAccountCategoryIndex: 0,
+     selectedAccountIndex: 0,
+
     /**
      * List of transactions.
      */
@@ -19,10 +22,10 @@ Polymer('min-accounting-model', {
 
      ready: function() {
         this.accountTypes = [
-            "assets",
-            "liabilities",
-            "income",
-            "expense"
+            "Aktiva",
+            "Passiva",
+            "Einnahmen",
+            "Ausgaben"
         ];
         this.accounts = {};
         this.accountTypes.forEach(function(accountType) {
@@ -31,11 +34,16 @@ Polymer('min-accounting-model', {
         this.transactions = [];
         this.commands = [];
         this.executeCommands([
-        ["addAccount", "income", "Kinesiologische Behandlung"],
-        ["addAccount", "assets", "Kassa"],
-        ["addAccount", "assets", "Volksbank"],
-        ["addAccount", "assets", "Volksbank (privat)"]
+        ["addAccount", "Einnahmen", "Kinesiologische Behandlung"],
+        ["addAccount", "Aktiva", "Kassa"],
+        ["addAccount", "Aktiva", "Volksbank"],
+        ["addAccount", "Aktiva", "Volksbank (privat)"]
         ]);
+    },
+
+    computed: {
+        selectedAccountCategory: 'accountTypes[selectedAccountCategoryIndex]',
+        selectedAccount: 'accounts[selectedAccountCategory][selectedAccountIndex]'
     },
 
     executeCommands: function(commands) {
@@ -62,6 +70,10 @@ Polymer('min-accounting-model', {
     addAccount: function(type, name) {
         this.executeCommand(["addAccount", type, name]);
         console.log("accounts:", this.accounts);
+    },
+
+    getAccountTransactions: function(name) {
+
     },
 
     fireChange: function() {
