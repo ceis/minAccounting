@@ -5,6 +5,8 @@
 <link rel="import" href="../bower_components/core-menu/core-menu.html">
 <link rel="import" href="../bower_components/core-menu/core-submenu.html">
 <link rel="import" href="../bower_components/core-item/core-item.html">
+<link rel="import" href="../bower_components/core-pages/core-pages.html">
+<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
 
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 
@@ -36,7 +38,13 @@
         <core-scaffold>
           <core-header-panel navigation flex mode="seamed">
             <core-toolbar>Application</core-toolbar>
-            <core-menu theme="core-light-theme" selected="{{model.selectedAccountCategoryIndex}}">
+             <core-menu theme="core-light-theme" selected="{{model.selectedPage}}">
+                <template repeat="{{page in model.pages}}">
+                  <core-item class="menuItem" label="{{page}}" on-click="{{menuItemClick}}">
+                  </core-item>
+                </template>
+            </core-menu>
+<!--             <core-menu theme="core-light-theme" selected="{{model.selectedAccountCategoryIndex}}">
                 <template repeat="{{accountType in model.accountTypes}}">
                 <core-submenu label="{{accountType}}" selected="{{model.selectedAccountIndex}}">
                 <template repeat="{{account in model.accounts[accountType]}}">
@@ -46,9 +54,33 @@
                 </core-submenu>
                 </template>
             </core-menu> 
-             </core-header-panel>
-          <div tool>{{model.selectedAccountCategory}} - {{model.selectedAccount}}</div>
-          <div>Main content goes here...</div>
+ -->             </core-header-panel>
+            <datalist id="searchOptions">
+            <template repeat="{{account in model.accounts}}">
+                <option>{{account.name}}</option>
+            </template>
+            </datalist>
+          <div tool>
+                        {{model.pages[model.selectedPage]}} <input type="text" list="searchOptions" value="{{model.txFilter}}">
+            </div>
+          <div>
+            <core-pages selected="{{model.selectedPage}}">
+            <section id="page1">
+                            <table>
+            <template repeat="{{tx in model.selectedTransactions}}">
+                <tr>
+                    <td>{{tx.date | formatDate}}</td>
+                    <td>{{tx.fromAccount.name}}</td>
+                    <td>{{tx.toAccount.name}}</td>
+                    <td>{{tx.amount}}</td>
+                    <td>{{tx.tax * 100}}%</td>
+                </tr>
+            </template>
+            </table>
+                </section>
+              <section id="page2">Konten</section>
+            </core-pages>
+          </div>
         </core-scaffold>
 
 <!--         <polymer-flex-layout></polymer-flex-layout>
