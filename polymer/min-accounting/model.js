@@ -21,7 +21,11 @@ Polymer('min-accounting-model', {
      transactions: null,
 
      selectedPage: 0,
+
+     selectedSubPage: 0,
      
+     searchString: "",
+
      ready: function() {
         // this.accountTypes = [
         //     "Aktiva",
@@ -30,8 +34,16 @@ Polymer('min-accounting-model', {
         //     "Ausgaben"
         // ];
         this.pages = [
-            "Buchungen",
-            "Konten"
+            {
+                name: "Buchungen"
+            },
+            {
+                name: "Konten",
+                children: [
+                    "Kassa",
+                    "Bankkonto"
+                ]
+            }
         ];
         this.accounts = [
             {
@@ -102,19 +114,25 @@ Polymer('min-accounting-model', {
         console.log("foo");
     },
 
-    txFilter: "",
+    filter: [],
 
     computed: {
         // selectedAccountCategory: 'accountTypes[selectedAccountCategoryIndex]',
         // selectedAccount: 'accounts[selectedAccountCategory][selectedAccountIndex]'
-        selectedTransactions: 'filterTransactions(txFilter, transactions)'
+        selectedTransactions: 'filterTransactions(filter, transactions)'
     },
 
     filterTransactions: function(filter, transactions) {
         if (transactions) {
             if (filter) {
                 return transactions.filter(function(tx) {
-                    return (tx.fromAccount.name === filter || tx.toAccount.name === filter);
+                    console.log("filter", filter, tx);
+                    if (filter.length === 0) {
+                        return true;
+                    }
+                    return filter.reduce(function(prev, str) {
+                        return prev && (tx.searchString.indexOf(str) > -1);
+                    }, true);
                 });
             }
             return transactions;
@@ -173,6 +191,11 @@ Polymer('min-accounting-model', {
         });
     },
 
+    search: function() {
+        console.log("search", this.searchString);
+        this.filter = this.searchString.toLowerCase().split(" ");
+    },
+
     initTransactions: function() {
         this.transactions = [
             ["2014-07-03","Kassa","Privatentnahme","0.0","4000.00"],
@@ -207,12 +230,15 @@ Polymer('min-accounting-model', {
             ["2014-07-08","Bankkonto","Steuerberater","0.2","54.00"],
             ["2014-07-08","Bankkonto","Kinesiologiebedarf","0.0","14.20"]
         ].map(function(tx) {
+            var fromAccount = this.getAccount(tx[1]);
+            var toAccount = this.getAccount(tx[2]);
             return {
                 date: tx[0],
-                fromAccount: this.getAccount(tx[1]),
-                toAccount: this.getAccount(tx[2]),
+                fromAccount: fromAccount,
+                toAccount: toAccount,
                 tax: 1*tx[3],
-                amount: 1*tx[4]
+                amount: 1*tx[4],
+                searchString: (fromAccount.name + " " + toAccount.name).toLowerCase()
             }
         }, this).sort(function(tx1, tx2) {
             if (tx1.date < tx2.date) {

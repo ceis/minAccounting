@@ -1,14 +1,16 @@
 
-<link rel="import" href="../bower_components/core-scaffold/core-scaffold.html">
+<!-- <link rel="import" href="../bower_components/core-scaffold/core-scaffold.html"> -->
 <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../bower_components/core-icon-button/core-icon-button.html">
 <link rel="import" href="../bower_components/core-menu/core-menu.html">
 <link rel="import" href="../bower_components/core-menu/core-submenu.html">
 <link rel="import" href="../bower_components/core-item/core-item.html">
 <link rel="import" href="../bower_components/core-pages/core-pages.html">
-<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../bower_components/core-selector/core-selector.html">
 
-<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 <link rel="import" href="model.html">
 
@@ -29,59 +31,95 @@
             .menuItem {
 
             }
+            #sidebar {
+                background-color: #EEE;
+            }
+            #toolbar {
+                color: #EEE;
+                background-color: #1f2036;
+            }
+            #content {
+                padding: 5px;
+            }
         </style>
         <!-- <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage> -->
         <min-accounting-model id="model"></min-accounting-model>
 
         <!--<button on-click="{{printData}}">Print data</button>-->
 
-        <core-scaffold>
-          <core-header-panel navigation flex mode="seamed">
-            <core-toolbar>Application</core-toolbar>
-             <core-menu theme="core-light-theme" selected="{{model.selectedPage}}">
-                <template repeat="{{page in model.pages}}">
-                  <core-item class="menuItem" label="{{page}}" on-click="{{menuItemClick}}">
-                  </core-item>
-                </template>
-            </core-menu>
-<!--             <core-menu theme="core-light-theme" selected="{{model.selectedAccountCategoryIndex}}">
-                <template repeat="{{accountType in model.accountTypes}}">
-                <core-submenu label="{{accountType}}" selected="{{model.selectedAccountIndex}}">
-                <template repeat="{{account in model.accounts[accountType]}}">
-                  <core-item class="menuItem" label="{{account}}" on-click="{{menuItemClick}}">
-                  </core-item>
-                </template>
-                </core-submenu>
-                </template>
-            </core-menu> 
- -->             </core-header-panel>
-            <datalist id="searchOptions">
+<!--              
+ --><!--             
+ -->
+                                    <!-- <core-pages selected="{{model.selectedPage}}"> -->
+                                    <!-- <div> -->
+            <!--  -->
+<!--                                     <datalist id="searchOptions">
             <template repeat="{{account in model.accounts}}">
                 <option>{{account.name}}</option>
             </template>
             </datalist>
-          <div tool>
-                        {{model.pages[model.selectedPage]}} <input type="text" list="searchOptions" value="{{model.txFilter}}">
-            </div>
-          <div>
-            <core-pages selected="{{model.selectedPage}}">
-            <section id="page1">
-                            <table>
-            <template repeat="{{tx in model.selectedTransactions}}">
-                <tr>
-                    <td>{{tx.date | formatDate}}</td>
-                    <td>{{tx.fromAccount.name}}</td>
-                    <td>{{tx.toAccount.name}}</td>
-                    <td>{{tx.amount}}</td>
-                    <td>{{tx.tax * 100}}%</td>
-                </tr>
-            </template>
-            </table>
-                </section>
-              <section id="page2">Konten</section>
+ -->
+<!--             <input type="text" list="searchOptions" value="{{model.txFilter}}">
+                </div>
+                <div>
+                    foo
+                </div>
             </core-pages>
-          </div>
-        </core-scaffold>
+ -->
+<!--             
+ -->
+
+<core-drawer-panel>
+    <core-header-panel drawer mode="waterfall" id="sidebar">
+        <core-toolbar>min(accounting)</core-toolbar>
+        <core-menu theme="core-light-theme" selected="{{model.selectedPage}}">
+            <template repeat="{{page in model.pages}}">
+                <!-- <template if="{{page.children}}"> -->
+                    <core-submenu label="{{page.name}}" selected="{{model.selectedSubPage}}" on-click="{{subMenuClick}}">
+                        <template repeat="{{child in page.children}}">
+                            <core-item class="menuItem" label="{{child}}" on-click="{{menuItemClick}}">
+                            </core-item>
+                        </template>
+                    </core-submenu>
+                <!-- </template> -->
+<!--                 <template if="{{!page.children}}">
+                    <core-item class="menuItem" label="{{page.name}}" on-click="{{menuItemClick}}">
+                    </core-item>
+                </template>
+ -->            </template>
+        </core-menu> 
+    </core-header-panel>
+    <core-header-panel main mode="waterfall">
+        <core-toolbar id="toolbar">
+            <core-icon-button icon="menu" core-drawer-toggle></core-icon-button>
+            <div flex>{{model.pages[model.selectedPage].name}}</div>
+            <template if="{{model.selectedPage === 0}}">
+            <paper-input label="Suche" on-change="{{search}}" value="{{model.searchString}}"></paper-input>
+            <core-icon-button icon="search" on-click="{{search}}"></core-icon-button>
+            </template>
+        </core-toolbar>
+        <div id="content">
+            <core-pages selected="{{model.selectedPage}}">
+                <section id="page1">
+                    <table>
+                        <template repeat="{{tx in model.selectedTransactions}}">
+                            <tr>
+                                <td>{{tx.date | formatDate}}</td>
+                                <td>{{tx.fromAccount.name}}</td>
+                                <td>{{tx.toAccount.name}}</td>
+                                <td>{{tx.amount}}</td>
+                                <td>{{tx.tax * 100}}%</td>
+                            </tr>
+                        </template>
+                    </table>
+                </section>
+                <section id="page2">
+                    {{model.pages[model.selectedPage].children[model.selectedSubPage]}}
+                </section>
+            </core-pages>
+        </div>
+    </core-header-panel>
+</core-drawer-panel>
 
 <!--         <polymer-flex-layout></polymer-flex-layout>
         <div flex>

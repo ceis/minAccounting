@@ -71,5 +71,13 @@ Polymer('min-accounting', {
         }, function(entry) {
             console.log("entry", entry);
         });
+    },
+
+    subMenuClick: function() {
+        model.selectedSubPage = 0;
+    },
+
+    search: function() {
+        this.model.search();
     }
 });
