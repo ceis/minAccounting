@@ -41,6 +41,21 @@
             #content {
                 padding: 5px;
             }
+            #txTable {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            #txTable th {
+                font-weight: bold;
+                border: 1px solid black;
+            }
+            #txTable td {
+                border: 1px solid black;
+                white-space: nowrap;
+            }
+            td.numeric {
+                text-align: right;
+            }
         </style>
         <!-- <polymer-localstorage id="dataStore" name="foobar" value="{{commands}}"></polymer-localstorage> -->
         <min-accounting-model id="model"></min-accounting-model>
@@ -101,20 +116,105 @@
         <div id="content">
             <core-pages selected="{{model.selectedPage}}">
                 <section id="page1">
-                    <table>
+                    <table id="txTable">
+                        <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Von</th>
+                                <th>Nach</th>
+                                <th>?</th>
+                                <th>Brutto</th>
+                                <th>St.</th>
+                                <th>Netto</th>
+                                <th>UST</th>
+                                <th>VOST</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <template repeat="{{tx in model.selectedTransactions}}">
                             <tr>
                                 <td>{{tx.date | formatDate}}</td>
                                 <td>{{tx.fromAccount.name}}</td>
                                 <td>{{tx.toAccount.name}}</td>
-                                <td>{{tx.amount}}</td>
-                                <td>{{tx.tax * 100}}%</td>
+                                <td>{{tx.type}}</td>
+                                <td class="numeric">{{tx.brutto | toEuro}}</td>
+                                <td class="numeric">{{tx.tax | toPercent}}</td>
+                                <td class="numeric">{{tx.netto | toEuro}}</td>
+                                <td class="numeric">{{tx.ust | toEuro}}</td>
+                                <td class="numeric">{{tx.vost | toEuro}}</td>
                             </tr>
                         </template>
+                        </tbody>
                     </table>
                 </section>
                 <section id="page2">
                     {{model.pages[model.selectedPage].children[model.selectedSubPage]}}
+                </section>
+                <section id="page3">
+                    Steuer:
+                    <table class="reportTable">
+                        <tbody>
+                            <tr>
+                                <td>Summe UST</td><td>{{model.total_ust | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Summe VOST</td><td>{{model.total_vost | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Steuerlast</td><td>{{model.total_tax | toEuro}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    Einnahmen/Ausgaben:
+                    <table class="reportTable">
+                        <thead>
+                            <tr><th></th><th>Netto</th><th>Brutto</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Einnahmen 0%</td>
+                                <td class="numeric">{{model.total_income_0 | toEuro}}</td>
+                                <td class="numeric">{{model.total_income_0 | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Einnahmen 10%</td>
+                                <td class="numeric">{{model.total_income_10 | toEuro}}</td>
+                                <td class="numeric">{{model.total_income_10 * 1.1 | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Einnahmen 20%</td>
+                                <td class="numeric">{{model.total_income_20 | toEuro}}</td>
+                                <td class="numeric">{{model.total_income_20 * 1.2 | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Einnahmen gesamt</td>
+                                <td class="numeric">{{model.total_income | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ausgaben 0%</td>
+                                <td class="numeric">{{model.total_expense_0 | toEuro}}</td>
+                                <td class="numeric">{{model.total_expense_0 | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ausgaben 10%</td>
+                                <td class="numeric">{{model.total_expense_10 | toEuro}}</td>
+                                <td class="numeric">{{model.total_expense_10 * 0.1| toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ausgaben 20%</td>
+                                <td class="numeric">{{model.total_expense_20 | toEuro}}</td>
+                                <td class="numeric">{{model.total_expense_20 * 0.2 | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ausgaben gesamt</td>
+                                <td class="numeric">{{model.total_expense | toEuro}}</td>
+                            </tr>
+                            <tr>
+                                <td>Erlös</td>
+                                <td class="numeric">{{model.total_total | toEuro}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
             </core-pages>
         </div>

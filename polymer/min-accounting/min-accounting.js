@@ -77,6 +77,17 @@ Polymer('min-accounting', {
         model.selectedSubPage = 0;
     },
 
+    toEuro: function(value) {
+        if (value === 0) {
+            return "-";
+        }
+        return "€ " + Number(value).toFixed(2);
+    },
+
+    toPercent: function(value) {
+        return (value * 100) + "%";
+    },
+
     search: function() {
         this.model.search();
     }
