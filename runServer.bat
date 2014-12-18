@@ -1,2 +1,2 @@
-start http://localhost:9988/polymer/index.html
+start http://localhost:9988/index.html
 node server.js
