@@ -1,4 +1,7 @@
+var http = require('http')
 var connect = require('connect');
-connect.createServer(
-    connect.static(__dirname)
-).listen(9988);
+var serveStatic = require('serve-static');
+
+var app = connect();
+app.use(serveStatic(__dirname));
+http.createServer(app).listen(process.env.PORT || 9988, process.env.IP || "localhost");
