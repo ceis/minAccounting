@@ -1,4 +1,5 @@
 /node_modules
+/bower_components
 /.c9
 /.idea
 minAccounting.iml
