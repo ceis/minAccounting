@@ -13,7 +13,7 @@ Polymer('min-accounting', {
     initialized: false,
 
     domReady: function() {
-        console.log("ready");
+        // console.log("ready");
         this.dataStore = this.$.dataStore;
         window.model = this.model = this.$.model;
         this.init();
@@ -57,7 +57,7 @@ Polymer('min-accounting', {
     },
 
     modelChanged: function(newModel) {
-        console.log("new model", newModel);
+        // console.log("new model", newModel);
     },
 
     handleFileData: function(data) {

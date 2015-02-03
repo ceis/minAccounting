@@ -149,6 +149,34 @@
                 </section>
                 <section id="page2">
                     {{model.pages[model.selectedPage].children[model.selectedSubPage]}}
+                    <table id="txTable">
+                        <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Konto</th>
+                                <th>Brutto</th>
+                                <th>St.</th>
+                                <th>Netto</th>
+                                <th>UST</th>
+                                <th>VOST</th>
+                                <th>Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <template repeat="{{tx in model.selectedAccountTransactions}}">
+                            <tr>
+                                <td>{{tx.date | formatDate}}</td>
+                                <td>{{tx.account.name}}</td>
+                                <td class="numeric">{{tx.brutto | toEuro}}</td>
+                                <td class="numeric">{{tx.tax | toPercent}}</td>
+                                <td class="numeric">{{tx.netto | toEuro}}</td>
+                                <td class="numeric">{{tx.ust | toEuro}}</td>
+                                <td class="numeric">{{tx.vost | toEuro}}</td>
+                                <td class="numeric">{{tx.saldo | toEuro}}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
                 </section>
                 <section id="page3">
                     Steuer:
