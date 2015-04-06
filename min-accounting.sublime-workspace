@@ -1,0 +1,600 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Ac",
+				"AccountType"
+			],
+			[
+				"A",
+				"AccountType"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Package Control Messages\n========================\n\nBetter TypeScript:\n-----------------\n\n  Better Typescript\n  ================================\n  \n  # Overview\n  \n  **This package is for Sublime Text 3**.\n  \n  ## Description\n  \n  This is fork of [Better CoffeeScript](https://github.com/aponxi/sublime-better-coffeescript) but adopted for work with Typescript.\n  Also look at this TypeScript plugin for Sublime Text https://github.com/Railk/T3S. It is really awesome.\n  \n  # Installation\n  \n  If you have Sublime Package Control, you know what to do. If not, well: it's a package manager for Sublime Text 3; it's awesome and you can [read about it here](https://sublime.wbond.net/). Installation guide can be [found here](https://sublime.wbond.net/installation).\n  \n  * Open the Command Pallete (`ctrl+shift+P` or `cmd+shift+P`).\n  * Type \"Install Package\" and hit return.\n  * Type \"Better TypeScript\" and hit return.\n  \n  # Build File Example\n  \n  Current package don't have sublime build file. You can create it by yourself and save it (`Preferences - Browse Packages... - User folder`) as `Typescript.sublime-build`. Then use `Cmd + B` to build your file.\n  \n  ```\n  {\n      \"cmd\": [\"tsc\", \"-d\", \"-m\", \"amd\", \"--sourcemap\", \"$file\"],\n      \"file_regex\": \"(.*\\\\.ts?)\\\\s\\\\(([0-9]+)\\\\,([0-9]+)\\\\)\\\\:\\\\s(...*?)$\",\n      \"selector\": \"source.ts\",\n      \"osx\": {\n         \"path\": \"/usr/local/bin:/opt/local/bin\"\n      },\n      \"windows\": {\n          \"cmd\": [\"tsc.cmd\", \"-d\", \"-m\", \"amd\", \"--sourcemap\", \"$file\"]\n      }\n  }\n  ```\n  \n  # Commands/Shortcuts\n  \n  You can access the commands either using the command palette (`ctrl+shift+P` or `cmd+shift+P`) or via shortcuts.\n  \n  	alt+shift+s - Run a syntax check\n  	alt+shift+c - Compile a file\n  	alt+shift+d - Display compiled JavaScript\n  	alt+shift+w - Toggle watch mode\n  \n  \n  Context menu has `Compile Output` that compiles the current TypeScript and outputs the javascript code that is run, in a panel.\n  \n  **Note:** Some of the commands use the Status Bar for output, so you'll probably want to enable it (`View » Show Status Bar`).\n  \n  \n  # Snippets\n  \n  - Use `TAB` to run a snippet after typing the trigger.\n  - Use `TAB` and `shift+TAB` to cycle forward/backward through fields.\n  - Use `ESC` to exit snippet mode.\n  \n  Thanks @MattSeen to provide Snippets (https://github.com/MattSeen/Sublime-TypeScript-Snippets)\n  \n  # Settings\n  \n  Go to `Preferences > Package Settings > Better TypeScript > Settings - User` to change settings.\n  \n  See `Preferences > Package Settings > Better TypeScript > Settings - Default` to see all available settings.\n  \n  \n  # FAQ\n  \n  Most of the linux terminal commands written here can be run via [cygwin](http://cygwin.com/install.html) - aka Linux Terminal in Windows.\n  \n  - Most of the problems are related to configurations. Remember to configure `binDir` after you install!\n  \n  \n  - Do I have `tsc` installed?\n  \n  Try finding tsc in your global npm list with `npm ls -g | grep tsc` which will output something like:\n  \n  ```bash\n  npm ls -g | grep tsc\n  ```\n  \n  \n  - Where can I find out the path to tsc binary?\n  \n  In Linux `which` command will tell you where a command originates from. In terminal type:\n  \n  ```bash\n  which tsc\n  # /usr/bin/tsc\n  ```\n  \n  This path will go into the `binDir` setting.\n  \n  ",
+			"settings":
+			{
+				"buffer_size": 3313,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		},
+		{
+			"file": "min-accounting/min-accounting-cli.ts",
+			"settings":
+			{
+				"buffer_size": 185,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "min-accounting/data/accounts.js",
+			"settings":
+			{
+				"buffer_size": 2228,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "min-accounting/data/accounts.ts",
+			"settings":
+			{
+				"buffer_size": 2536,
+				"line_ending": "Windows",
+				"name": "var accounts = [{"
+			}
+		},
+		{
+			"file": "min-accounting/model/Transaction.ts",
+			"settings":
+			{
+				"buffer_size": 175,
+				"line_ending": "Windows",
+				"name": "import Account = require(\"./Account\");"
+			}
+		},
+		{
+			"file": "min-accounting/model/Account.ts",
+			"settings":
+			{
+				"buffer_size": 177,
+				"line_ending": "Windows",
+				"name": "export interface Account {"
+			}
+		},
+		{
+			"file": "min-accounting/accounts.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "min-accounting/model.js",
+			"settings":
+			{
+				"buffer_size": 24629,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "min-accounting/min-accounting.js",
+			"settings":
+			{
+				"buffer_size": 2137,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/A&C/AppData/Roaming/Sublime Text 3/Packages/User/Typescript.sublime-build",
+			"settings":
+			{
+				"buffer_size": 352,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"node",
+			"restart",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/dev/minAccounting",
+		"/D/dev/minAccounting/min-accounting",
+		"/D/dev/minAccounting/min-accounting/data",
+		"/D/dev/minAccounting/min-accounting/model"
+	],
+	"file_history":
+	[
+		"/D/dev/minAccounting/min-accounting/transactionData.ts",
+		"/D/dev/minAccounting/min-accounting/min-accounting-cli.js",
+		"/D/dev/minAccounting/min-accounting/min-accounting-cli.ts",
+		"/D/dev/minAccounting/index.html",
+		"/C/Users/A&C/Downloads/can.custom.js",
+		"/C/Users/A&C/Desktop/tmp.csv",
+		"/C/Users/A&C/Downloads/umsaetze-girokonto_44820_31172490000_EUR_2015-02-03_15-12-07.csv",
+		"/I/tmp/freecommander/FreeCommander.ftp",
+		"/C/Users/A&C/Downloads/winscp556setup.md5.txt",
+		"/D/tmp/fc/Bkp_Settings_2014-12-31 16-04-59/FreeCommander.ini",
+		"/C/Users/A&C/Documents/kontakte.csv"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"	 	Die drei ??? Kids",
+			"dojo",
+			";",
+			",",
+			";",
+			",",
+			";"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			",",
+			".",
+			",",
+			".",
+			","
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1170,
+								1519
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "min-accounting/min-accounting-cli.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 185,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								107,
+								107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better TypeScript/TypeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "min-accounting/data/accounts.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1035.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "min-accounting/data/accounts.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2536,
+								2536
+							]
+						],
+						"settings":
+						{
+							"auto_name": "var accounts = [{",
+							"syntax": "Packages/Better TypeScript/TypeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "min-accounting/model/Transaction.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 175,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								175,
+								175
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import Account = require(\"./Account\");",
+							"syntax": "Packages/Better TypeScript/TypeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "min-accounting/model/Account.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								177,
+								177
+							]
+						],
+						"settings":
+						{
+							"auto_name": "export interface Account {",
+							"syntax": "Packages/Better TypeScript/TypeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "min-accounting/accounts.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "min-accounting/model.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24629,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								703,
+								3204
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1636.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "min-accounting/min-accounting.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2137,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/A&C/AppData/Roaming/Sublime Text 3/Packages/User/Typescript.sublime-build",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "min-accounting.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 310.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
