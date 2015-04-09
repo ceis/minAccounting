@@ -1,4 +1,4 @@
-exports.transactionData = [
+export var transactionData = [
     ["2014-03-31", "Bankkonto", "Bankspesen", 0, 9.46],
     ["2014-03-06", "Mietkonto", "Bankkonto", 0, 300.63],
     ["2014-03-03", "Bankkonto", "SVA", 0, 26.01],
@@ -181,4 +181,3 @@ exports.transactionData = [
     ["2014-09-14", "Mietkonto", "Verwaltungskosten (Ausgabe)", 0.1, 26.28],
     ["2014-09-14", "Mietkonto", "Reparaturrücklage (Ausgabe)", 0, 7.60]
 ];
-//# sourceMappingURL=transactions.js.map

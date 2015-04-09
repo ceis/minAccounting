@@ -1,5 +1,6 @@
 /node_modules
 /bower_components
+/polymer/bower_components
 /.c9
 /.idea
 minAccounting.iml
