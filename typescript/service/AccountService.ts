@@ -47,6 +47,11 @@ class AccountService {
 
     _transactions:Transaction[];
 
+    loadData(data: any): void {
+        this.loadAccounts(data.accounts);
+        this.loadTransactions(data.transactions);
+    }
+
     loadAccounts(accountData:any[]):void {
         this._accounts = [];
         this._accountsByName = {};

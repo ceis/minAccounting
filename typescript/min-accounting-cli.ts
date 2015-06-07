@@ -1,10 +1,8 @@
 import AccountService from "./service/AccountService";
-import accountData from './data/accounts';
-import transactionData from './data/transactions';
+import data from '../data2014';
 
 var accountService = new AccountService();
-accountService.loadAccounts(accountData);
-accountService.loadTransactions(transactionData);
+accountService.loadData(data);
 
 accountService.printTransactions(accountService.getAccountByName("Kassa"));
 
