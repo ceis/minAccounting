@@ -1,6 +1,6 @@
 import Account from "./Account";
 
-interface Transaction {
+class Transaction {
 	date: Date;
 	fromAccount: Account;
 	toAccount: Account;
