@@ -1,10 +1,12 @@
-import Account = require("./Account");
+import Account from "./Account";
 
-export interface Transaction {
+interface Transaction {
 	date: Date;
-	fromAccount: Account.Account;
-	toAccount: Account.Account;
+	fromAccount: Account;
+	toAccount: Account;
 	amount: number;
 	tax: number;
 	text: string;
 }
+
+export default Transaction;

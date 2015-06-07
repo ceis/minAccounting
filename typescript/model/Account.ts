@@ -1,7 +1,9 @@
-import AccountType = require("./AccountType");
+import AccountType from "./AccountType";
 
-export interface Account {
+interface Account {
 	name: string;
 	type: AccountType;
 	tags: string[];
 }
+
+export default Account;

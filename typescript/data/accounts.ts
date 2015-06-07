@@ -1,7 +1,7 @@
-import account = require("../model/Account");
-import AccountType = require("../model/AccountType");
+import Account from "../model/Account";
+import AccountType from "../model/AccountType";
 
-var accounts:account.Account[] = [{
+var accounts:Account[] = [{
     name: "Kinesiologische Behandlung",
     type: AccountType.Income,
     tags: ["Praxis"]
