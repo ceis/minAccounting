@@ -1,4 +1,5 @@
 import Account from "../model/Account";
+import AccountType from "../model/AccountType";
 import Transaction from "../model/Transaction";
 
 interface TransactionData {
@@ -10,33 +11,19 @@ interface TransactionData {
     text: string;
 }
 
-function zeroPad(num: number): string {
-    return (num < 10 ? "0" : "") + num;
-}
-
-function amountToString(width: number, amount: number): string {
-    var str = String(Math.round(amount / 10) / 100);
-    if (amount % 1000 === 0) {
-        str += ".00";
-    } else if (amount % 100 === 0) {
-        str += "0";
-    }
-    while (str.length < width) {
-        str = " " + str;
-    }
-    return str;
-}
-
-function formatDate(date: Date): string {
-    var day = zeroPad(date.getDate());
-    var month = zeroPad(date.getMonth() + 1);
-    var year = date.getFullYear();
-    return `${day}.${month}.${year}`;
+function compareByDate(tx1, tx2) {
+    return tx1.date - tx2.date;
 }
 
 function byAccount(account:Account):(tx:Transaction) => boolean {
     return (transaction:Transaction):boolean => {
         return account.isAffectedBy(transaction);
+    };
+}
+
+function byAccountType(accountType:AccountType):(tx:Transaction) => boolean {
+    return (transaction:Transaction):boolean => {
+        return transaction.fromAccount.isOfType(accountType) || transaction.toAccount.isOfType(accountType);
     };
 }
 
@@ -58,7 +45,7 @@ class AccountService {
         accountData.forEach((accountData:any) => {
             var account = new Account();
             account.name = accountData.name;
-            account.type = accountData.type;
+            account.type = <AccountType>AccountType[<string>accountData.type];
             account.initialAmount = (accountData.initialAmount || 0) * 1000;
             account.tags = accountData.tags;
             this._accounts.push(account);
@@ -89,24 +76,19 @@ class AccountService {
 
             this._transactions.push(transaction);
         });
+        this._transactions = this._transactions.sort(compareByDate);
     }
 
     getAccountByName(name:string):Account {
         return this._accountsByName[name];
     }
 
-    printTransactions(account:Account):void {
-        var saldo = account.initialAmount;
-        this._transactions.filter(byAccount(account)).forEach((tx: Transaction) => {
-            var date = formatDate(tx.date);
-            var what = account.getOtherAccount(tx).name;
-            var amount = tx.amount;
-            if (account.isSourceOf(tx)) {
-                amount = -amount;
-            }
-            saldo += amount;
-            console.log(`${date}: ${amountToString(8, amount)} ${amountToString(8, saldo)} ${what}`);
-        });
+    getTransactionsByAccountType(accountType: AccountType) {
+        return this._transactions.filter(byAccountType(accountType));
+    }
+
+    getTransactionsByAccount(account) {
+        return this._transactions.filter(byAccount(account));
     }
 }
 

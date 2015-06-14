@@ -22,6 +22,10 @@ class Account {
 	getOtherAccount(transaction: Transaction): Account {
 		return this.isSourceOf(transaction) ? transaction.toAccount : transaction.fromAccount;
 	}
+
+	isOfType(accountType: AccountType) {
+		return this.type === accountType;
+	}
 }
 
 export default Account;
