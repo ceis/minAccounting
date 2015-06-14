@@ -27,6 +27,14 @@ function byAccountType(accountType:AccountType):(tx:Transaction) => boolean {
     };
 }
 
+function isIncome(transaction:Transaction): boolean {
+    return transaction.fromAccount.isOfType(AccountType.Income) && !transaction.toAccount.isOfType(AccountType.Income);
+}
+
+function isExpense(transaction:Transaction): boolean {
+    return transaction.toAccount.isOfType(AccountType.Expense) && !transaction.fromAccount.isOfType(AccountType.Expense);
+}
+
 class AccountService {
 
     _accounts:Account[];
@@ -89,6 +97,14 @@ class AccountService {
 
     getTransactionsByAccount(account) {
         return this._transactions.filter(byAccount(account));
+    }
+
+    getIncomeTransactions() {
+        return this._transactions.filter(isIncome);
+    }
+
+    getExpenseTransactions() {
+        return this._transactions.filter(isExpense);
     }
 }
 
