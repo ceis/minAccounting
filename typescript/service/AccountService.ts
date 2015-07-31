@@ -35,6 +35,10 @@ function isExpense(transaction:Transaction): boolean {
     return transaction.toAccount.isOfType(AccountType.Expense) && !transaction.fromAccount.isOfType(AccountType.Expense);
 }
 
+function isLiabilities(transaction:Transaction): boolean {
+    return transaction.toAccount.isOfType(AccountType.Liabilities) && !transaction.fromAccount.isOfType(AccountType.Liabilities);
+}
+
 class AccountService {
 
     _accounts:Account[];
@@ -105,6 +109,10 @@ class AccountService {
 
     getExpenseTransactions() {
         return this._transactions.filter(isExpense);
+    }
+
+    getLiabilitiesTransactions() {
+        return this._transactions.filter(isLiabilities);
     }
 }
 

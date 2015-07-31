@@ -1,6 +1,6 @@
 import AccountService from "./service/AccountService";
 import data from '../data2014';
-import EinnahmenAusgabenBericht from "./reports/EinnahmenAusgabenBericht";
+import EinnahmenAusgabenBericht from "./reports/EinnahmenAusgabenBericht2";
 import KontoBericht from './reports/KontoBericht';
 
 var accountService = new AccountService();
