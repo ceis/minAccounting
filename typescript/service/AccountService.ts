@@ -9,6 +9,7 @@ interface TransactionData {
     amount: number;
     tax: number;
     text: string;
+    symbol: string;
 }
 
 function compareByDate(tx1, tx2) {
@@ -57,9 +58,11 @@ class AccountService {
         accountData.forEach((accountData:any) => {
             var account = new Account();
             account.name = accountData.name;
+            account.nr = accountData.nr || '????';
             account.type = <AccountType>AccountType[<string>accountData.type];
             account.initialAmount = (accountData.initialAmount || 0) * 1000;
             account.tags = accountData.tags;
+            account.symbol = accountData.symbol || '';
             this._accounts.push(account);
             this._accountsByName[accountData.name] = account;
         });
@@ -89,6 +92,10 @@ class AccountService {
             this._transactions.push(transaction);
         });
         this._transactions = this._transactions.sort(compareByDate);
+        this._transactions.forEach((tx) => {
+            tx.fromAccountTxNr = tx.fromAccount.getNextTxNr();
+            tx.toAccountTxNr = tx.toAccount.getNextTxNr();
+        });
     }
 
     getAccountByName(name:string):Account {

@@ -32,7 +32,7 @@ class EinnahmenAusgabenBericht extends Report {
         this.println();
         var totalsExpense = this.printIncome('Ausgaben', 'VOST', this.accountService.getExpenseTransactions(), tx => tx.fromAccount);
         this.println();
-        var totalsExpense = this.printIncome('Sonstige', '', this.accountService.getLiabilitiesTransactions(), tx => tx.fromAccount);
+        this.printIncome('Sonstige', '', this.accountService.getLiabilitiesTransactions(), tx => tx.fromAccount);
         this.println();
         this.println('Gesamt');
         this.println(';Steuersatz;Summe;VOST/UST');
@@ -68,7 +68,7 @@ class EinnahmenAusgabenBericht extends Report {
             }
         }
         this.println(title);
-        this.println('Konto;Datum;Netto;Steuersatz;' + taxLabel + ';Kostenstelle;' + otherAccounts.join(';'));
+        this.println('Konto;Lfd.Nr.;Datum;Netto;Steuersatz;' + taxLabel + ';Kostenstelle;' + otherAccounts.join(';'));
         incomeTransactions.forEach((tx:Transaction) => {
             var date = this.formatDate(tx.date);
             ++counter;
@@ -79,6 +79,7 @@ class EinnahmenAusgabenBericht extends Report {
             var netto = tx.getAmountNetto();
             var tax = tx.tax;
             var ust = tx.getTaxAmount();
+            var txNr = tx.getTxNrForAccount(acc);
             total += netto;
             total_ust += ust;
             if (tx.tax === 0) {
@@ -103,7 +104,7 @@ class EinnahmenAusgabenBericht extends Report {
             });
             totalOtherAccounts[otherAccount] += netto;
 
-            this.println(`${account};${date};${this.formatAmount(netto)};${this.formatTax(tax)};${this.formatAmount(ust)};${otherAccount}${otherAccountsOutput}`);
+            this.println(`${account};${txNr};${date};${this.formatAmount(netto)};${this.formatTax(tax)};${this.formatAmount(ust)};${otherAccount}${otherAccountsOutput}`);
         });
 
         var totalOtherAccountsOutput = "";

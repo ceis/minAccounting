@@ -59,7 +59,9 @@ class Report {
     }
 
     start(): void {
-        fs.truncateSync(this.outFile);
+        if (fs.existsSync(this.outFile)) {
+            fs.truncateSync(this.outFile);
+        }
     }
 
     println(text:string = "") {
