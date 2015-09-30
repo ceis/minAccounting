@@ -17,15 +17,20 @@ class KontoBericht extends Report {
 
     print(): void {
         var saldo = this.account.initialAmount;
+        var num = 1;
+        console.log(`Datum;Lfd. Nr.;Betrag;Steuersatz;Steuer;Saldo;Kostenstelle`);
         this.accountService.getTransactionsByAccount(this.account).forEach((tx: Transaction) => {
             var date = this.formatDate(tx.date);
             var what = this.account.getOtherAccount(tx).name;
             var amount = tx.amount;
+            var tax = tx.tax;
+            var taxAmount = tx.getTaxAmount();
             if (this.account.isSourceOf(tx)) {
                 amount = -amount;
             }
             saldo += amount;
-            console.log(`${date}: ${this.amountToString(8, amount)} ${this.amountToString(8, saldo)} ${what}`);
+            console.log(`${date};${num};${this.formatAmount(amount)};${this.formatTax(tax)};${this.formatAmount(taxAmount)};${this.formatAmount(saldo)};${what}`);
+            num++;
         });
     }
 }

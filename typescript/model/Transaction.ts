@@ -1,6 +1,7 @@
 import Account from "./Account";
 
 class Transaction {
+    recordNr:number;
     date:Date;
     fromAccount:Account;
     toAccount:Account;

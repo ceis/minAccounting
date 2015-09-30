@@ -13,7 +13,13 @@ interface TransactionData {
 }
 
 function compareByDate(tx1, tx2) {
-    return tx1.date - tx2.date;
+    if (tx1.date < tx2.date) {
+        return -1;
+    }
+    if (tx1.date > tx2.date) {
+        return 1;
+    }
+    return tx1.recordNr - tx2.recordNr;
 }
 
 function byAccount(account:Account):(tx:Transaction) => boolean {
@@ -70,8 +76,10 @@ class AccountService {
 
     loadTransactions(transactionData:any[][]):void {
         this._transactions = [];
+        var recordNr = 0;
         transactionData.forEach((transactionData:any[], i:number) => {
             var transaction = new Transaction();
+            transaction.recordNr = recordNr++;
             transaction.date = new Date(transactionData[0]);
 
             var fromAccount = this._accountsByName[transactionData[1]];
